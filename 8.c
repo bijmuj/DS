@@ -12,6 +12,12 @@ tree
 
 char tr[10] = {"bbaababaa"};
 int d = 0;
+/*
+                b
+        b               b
+    a       a       a       b
+                        a       a
+                        */
 //initializes the above tree
 tree *init(tree *root)
 {

@@ -7,7 +7,8 @@ struct node
     struct node *next;
 };
 
-//recursively circularising again
+//recursively circularising the list
+//probably would be more efficient to interate and not recurse
 struct node *circ(struct node *old_head, struct node *new_head)
 {
     if (old_head->next == new_head->next)
@@ -18,7 +19,8 @@ struct node *circ(struct node *old_head, struct node *new_head)
     return circ(old_head->next, new_head);
 }
 
-//insert front
+//insert front operation
+//in this case it is practically the same as push
 struct node *insert(int a, struct node *old_head)
 {
     struct node *new_head = (struct node *)malloc(sizeof(struct node));
@@ -39,6 +41,7 @@ struct node *insert(int a, struct node *old_head)
 }
 
 //delete front
+//practically the same as pop
 struct node *delete (struct node *old_head)
 {
     if (old_head)
@@ -59,6 +62,7 @@ struct node *delete (struct node *old_head)
     return NULL;
 }
 
+//display code
 void display(struct node *head)
 {
     if (head)
@@ -77,6 +81,7 @@ void display(struct node *head)
     }
 }
 
+//decreasing the temperature(val) of all buns in the list by 5
 struct node *cool(struct node *head)
 {
     if (head)
@@ -107,6 +112,7 @@ void main()
             printf("invalid\n");
             break;
         case 1:
+            //every time a new bun is added old buns are cooled
             head = cool(head);
             head = insert(80, head);
             printf("bun added\n");

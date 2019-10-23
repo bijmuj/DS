@@ -19,6 +19,7 @@ struct node *circ(struct node *old_head, struct node *new_head)
 }
 
 //insert front
+//same as enqueue operation
 struct node *insert(int a, struct node *old_head)
 {
     struct node *new_head = (struct node *)malloc(sizeof(struct node));
@@ -39,21 +40,45 @@ struct node *insert(int a, struct node *old_head)
 }
 
 //recursize delete rear
+//same as dequeue operation
 struct node *delete (struct node *head)
 {
-    struct node *temp = head;
-    do
+    if (head)
     {
-        temp = temp->next;
-    } while (temp->next->next != head);
-    printf("bun at temp %d removed\n", temp->next->val);
-    temp->next->next = NULL;
-    temp->next->val = 0;
-    free(temp->next);
-    temp->next = head;
-    return head;
+        struct node *temp = head;
+        do
+        {
+            temp = temp->next;
+        } while (temp->next->next != head);
+        printf("bun at temp %d removed\n", temp->next->val);
+        if (temp->next != temp)
+        {
+            if (temp->next)
+            {
+                temp->next->next = NULL;
+                temp->next->val = 0;
+                free(temp->next);
+            }
+            //pointing the next of the last value back to the first value
+            temp->next = head;
+        }
+        else
+        {
+            temp->next = NULL;
+            temp->val = 0;
+            free(temp);
+            return NULL;
+        }
+        return head;
+    }
+    else
+    {
+        printf("no buns to remove\n");
+        return NULL;
+    }
 }
 
+//display code
 void display(struct node *head)
 {
     if (head)
@@ -72,6 +97,7 @@ void display(struct node *head)
     }
 }
 
+//decreases the temperature of  all buns in the queue
 struct node *cool(struct node *head)
 {
     if (head)
@@ -102,6 +128,7 @@ void main()
             printf("invalid\n");
             break;
         case 1:
+            //old buns cooled everytime a new bun is added
             head = cool(head);
             head = insert(80, head);
             printf("bun added\n");

@@ -3,6 +3,7 @@
 void sort(int t[])
 {
     int i, j, temp;
+    //using bubble sort on t
     for (i = 0; i < 6; i++)
     {
         for (j = 0; j < 6 - i; j++)
@@ -15,6 +16,7 @@ void sort(int t[])
             }
         }
     }
+    //display code
     for (int i = 0; i < 6; i++)
         printf("%c, %d\n", (char)t[i], t[i]);
 }
@@ -23,9 +25,11 @@ void main()
 {
     char word[6] = {"Gandhi"};
     int t[6];
+    //inserting the ascii values of word into t
     for (int i = 0; i < 6; i++)
     {
         t[i] = (int)word[i];
     }
+    //sorting t
     sort(t);
 }

@@ -18,7 +18,7 @@ struct node *circ(struct node *old_head, struct node *new_head)
     return circ(old_head->next, new_head);
 }
 
-//inserting front
+//insert front operation
 struct node *insert(char a, struct node *old_head)
 {
     struct node *new_head = (struct node *)malloc(sizeof(struct node));
@@ -38,10 +38,12 @@ struct node *insert(char a, struct node *old_head)
     return NULL;
 }
 
+//display code
 void display(struct node *head)
 {
     struct node *temp = head;
-    for (int i = 0; i < 10; i++)
+    //repeating the whole list twice to show that the list is circular
+    for (int i = 0; i < 20; i++)
     {
         printf("%c ", temp->val);
         temp = temp->next;

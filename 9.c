@@ -70,8 +70,9 @@ tree *make_tree(char inf[])
 
 tree *evaluate(tree *root)
 {
-    char op;
+    char op = root->val;
     int f = 0;
+    int op1, op2, ans;
     if (root->left)
     {
         root->left = evaluate(root->left);
@@ -86,7 +87,27 @@ tree *evaluate(tree *root)
     {
         if (priority(root->left->val) == 0 && priority(root->right->val) == 0)
         {
-            //write the calculation switch cases here
+            switch (op)
+            {
+            case '+':
+                op1 = atoi(root->left->val);
+                op2 = atoi(root->right->val);
+                ans = op1 + op2;
+                root->val = ans + '0';
+                break;
+            case '-':
+                op1 = atoi(root->left->val);
+                op2 = atoi(root->right->val);
+                ans = op1 - op2;
+                root->val = ans + '0';
+                break;
+            default:
+                break;
+            }
+            root->left->val = root->right->val = 0;
+            free(root->left);
+            free(root->right);
+            root->left = root->right = NULL;
         }
     }
     return root;

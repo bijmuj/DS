@@ -15,6 +15,7 @@ struct node *insert(int a, struct node *old_head)
     if (new_head)
     {
         if (old_head)
+            //required check as old_head->prev crashes if old_head=NULL
             old_head->prev = new_head;
         new_head->val = a;
         new_head->next = old_head;
@@ -25,9 +26,8 @@ struct node *insert(int a, struct node *old_head)
     return NULL;
 }
 
-//connecting the two lists
-//would've been much more efficient if I'd used to pointers for each list
-void connect(struct node *head, struct node *tail)
+//connecting the two lists and displaying
+void connect(struct node *head, struct node *head2)
 {
     struct node *temp = head;
     while (temp->next != NULL)
@@ -35,8 +35,8 @@ void connect(struct node *head, struct node *tail)
         temp = temp->next;
     }
 
-    temp->next = tail;
-    tail->prev = head;
+    temp->next = head2;
+    head2->prev = head;
     temp = head;
 
     for (int i = 0; i < 10; i++)
@@ -49,13 +49,16 @@ void connect(struct node *head, struct node *tail)
 void main()
 {
     int list[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    struct node *head = NULL, *tail = NULL;
-    for (int i = 0; i < 10; i++)
+    struct node *head = NULL, *head2 = NULL;
+    for (int i = 9; i >= 0; i--)
     {
+        //if the number is even inserting into first list
         if (list[i] % 2 == 0)
             head = insert(list[i], head);
+        //else inserting into second list
         else
-            tail = insert(list[i], tail);
+            head2 = insert(list[i], head2);
     }
-    connect(head, tail);
+    //joining the two lists
+    connect(head, head2);
 }

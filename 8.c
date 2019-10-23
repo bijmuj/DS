@@ -121,7 +121,6 @@ tree *rm(tree *root)
 
 //displays tree
 //code from https://www.geeksforgeeks.org/print-binary-tree-2-dimensions/
-//was feeling too lazy to write something but I really needed to check
 void print2DUtil(tree *root, int space)
 {
     // Base case

@@ -21,7 +21,7 @@ void sort(int t[])
 
 void main()
 {
-    char word[6] = {'G', 'a', 'n', 'd', 'h', 'i'};
+    char word[6] = {"Gandhi"};
     int t[6];
     for (int i = 0; i < 6; i++)
     {

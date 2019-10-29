@@ -10,17 +10,17 @@ I'm 95% sure all my programs work as they're supposed to.
 
 - Type casting a char into an int gives us its ascii value so I used that for 3.
 
-- 4 is just interweaving two char arrays together.
+- ~~4 is just interweaving two char arrays together.~~ Oh how naive I was. It's actually rearranging a circular list.
 
 - 5 is probably best done with a stack which I've emulated.
 
-- 6 is five but with a queue.
+- 6 is five but with a * circular * queue.
 
-- The other 6 I only saw today. I'll do it tomorrow. Maybe.
+- ~~The other 6 I only saw today. I'll do it tomorrow. Maybe.~~ Probably never doing this. Too lazy.
 
-- 7 isn't very dynamic. It can only do ABC+-.
+- My version of 7 isn't very dynamic. It can only do ABC+-.
 
 - 8 is a binary tree problem, not the simplest but not the most complex. 
-  - Tried generating a random tree run but it gave me problems so I just gave it a tree.  
+  - Tried generating a random tree run but it gave me problems so I just gave it a predefined a tree.  
 
 - 9 works for +-/*.

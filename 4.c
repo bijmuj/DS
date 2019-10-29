@@ -7,17 +7,6 @@ struct node
     struct node *next;
 };
 
-//circularising the list recursively
-struct node *circ(struct node *old_head, struct node *new_head)
-{
-    if (old_head->next == new_head->next)
-    {
-        old_head->next = new_head;
-        return old_head;
-    }
-    return circ(old_head->next, new_head);
-}
-
 //insert front operation
 struct node *insert(char a, struct node *old_head)
 {
@@ -25,13 +14,7 @@ struct node *insert(char a, struct node *old_head)
     if (new_head)
     {
         new_head->val = a;
-        if (old_head)
-        {
-            new_head->next = old_head;
-            old_head = circ(old_head, new_head);
-        }
-        else
-            new_head->next = new_head;
+        new_head->next = old_head;
         return new_head;
     }
     printf("AllocError: null returned\n");
@@ -50,17 +33,57 @@ void display(struct node *head)
     }
 }
 
+//circularising the list
+struct node *circ(struct node *head)
+{
+    struct node *temp = head;
+    while (temp->next)
+    {
+        temp = temp->next;
+    }
+    temp->next = head;
+    return head;
+}
+
+struct node *rearrange(struct node *head)
+{
+    struct node *caps, *smalls;
+    struct node *temp, *temp2, *new_head;
+    caps = smalls = head;
+    //finding the first capital
+    while ((int)caps->val >= 96 && caps)
+    {
+        caps = caps->next;
+    }
+    //rearranging the list
+    new_head = smalls;
+    do
+    {
+        temp = caps->next;
+        caps->next = smalls->next;
+        smalls->next = caps;
+        smalls = caps->next;
+        temp2 = smalls;
+        while (temp2->next != caps)
+        {
+            temp2 = temp2->next;
+        }
+        temp2->next = temp;
+        caps = temp;
+    } while (caps != new_head && smalls != new_head);
+    return new_head;
+}
+
 void main()
 {
-    char c, list[10] = {"abcdeABCDE"};
+    char c, list[10] = {"EDCBAedcba"};
     struct node *head = NULL;
     for (int i = 0; i < 10; i++)
     {
-        if (i % 2 == 0)
-            c = list[i / 2];
-        else
-            c = list[(i / 2) + 5];
-        head = insert(c, head);
+        head = insert(list[i], head);
     }
+    head = circ(head);
+
+    head = rearrange(head);
     display(head);
 }

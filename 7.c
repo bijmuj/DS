@@ -11,6 +11,7 @@ node
     node *prev;
 };
 
+//recursive insert rear operation
 node *insert_rear(int v, node *head, node *prev)
 {
     if (head)
@@ -28,6 +29,7 @@ node *insert_rear(int v, node *head, node *prev)
     }
 }
 
+//takes the 12 character string and breaks into 4 digit integer and inserts them into a list
 node *insert(char a[], node *head)
 {
     int j = 0;
@@ -43,6 +45,7 @@ node *insert(char a[], node *head)
     return head;
 }
 
+//deletes the last element of a list
 int delete_rear(node *head)
 {
     if (head)
@@ -64,6 +67,7 @@ int delete_rear(node *head)
     return 0;
 }
 
+//display code
 void display(node *head)
 {
     if (head)
@@ -73,6 +77,7 @@ void display(node *head)
     }
 }
 
+//insert front operation
 node *insert_front(int v, node *old_head)
 {
     node *new_head = (node *)malloc(sizeof(node));
@@ -88,6 +93,7 @@ node *insert_front(int v, node *old_head)
     return NULL;
 }
 
+//function to evaluate an expression (operand, operand, operator)
 node *evaluate(node *op1, node *op2, char op)
 {
     int cb = 0, v1, v2, res;
@@ -126,7 +132,7 @@ node *evaluate(node *op1, node *op2, char op)
 void main()
 {
     int i;
-    char in[12] = {"912345600000"};
+    char in[12];
     node *A = NULL, *B = NULL, *C = NULL;
 
     printf("Enter value of A(12 digits):");
